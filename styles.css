@@ -75,3 +75,8 @@ h1 {
 .taskItem button:hover {
     background-color: #c82333;
 }
+
+.completed {
+    text-decoration: line-through;
+    color: #999; /* Optionally adjust color for completed tasks */
+}
