@@ -1,3 +1,7 @@
+// Declare the type alias for SpeechRecognition
+
+ // declare var SpeechRecognition: new () => SpeechRecognition;
+
 // Define Task interface
 interface Task {
     id: number;
@@ -67,6 +71,33 @@ function deleteTask(id: number) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
 }
+
+// Function to handle voice input
+function handleVoiceInput() {
+  //  const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+        const speechToText = event.results[0][0].transcript;
+        addTask(speechToText);
+    };
+
+    recognition.onspeechend = function() {
+        recognition.stop();
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Speech recognition error occurred: ', event.error);
+    };
+
+    recognition.start();
+}
+
+// Add event listener to the microphone icon or any element you want to trigger voice input
+const microphoneIcon = document.getElementById('microphoneIcon')!;
+microphoneIcon.addEventListener('click', handleVoiceInput);
 
 // Add event listener for the Add Task button
 const addTaskButton = document.getElementById('addTaskButton')!;

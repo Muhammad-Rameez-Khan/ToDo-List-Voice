@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List with Voice Recognition</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <header>
+        <h1>Netflix-style To-Do List</h1>
+    </header>
     <div class="container">
-        <h1>To-Do List with Voice Recognition</h1>
         <div id="taskInputContainer">
-            <!-- Add a microphone icon -->
-<i id="microphoneIcon" class="fas fa-microphone"></i>
-
             <input type="text" id="taskInput" placeholder="Add a new task...">
             <button id="addTaskButton">Add Task</button>
         </div>
+        <!-- Microphone icon for voice input -->
+        <i id="microphoneIcon" class="fas fa-microphone"></i>
         <ul id="taskList"></ul>
     </div>
+    <footer>
+        <p>&copy; 2024 Author: MRK To-Do List | </p>
+    </footer>
     <script src="script.js"></script>
     <script src="script.js" type="module"></script>
-
 </body>
 </html>

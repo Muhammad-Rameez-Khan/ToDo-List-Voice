@@ -52,6 +52,27 @@ function deleteTask(id) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     renderTasks();
 }
+// Function to handle voice input
+function handleVoiceInput() {
+    var recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.onresult = function (event) {
+        var speechToText = event.results[0][0].transcript;
+        addTask(speechToText);
+    };
+    recognition.onspeechend = function () {
+        recognition.stop();
+    };
+    recognition.onerror = function (event) {
+        console.error('Speech recognition error occurred: ', event.error);
+    };
+    recognition.start();
+}
+// Add event listener to the microphone icon or any element you want to trigger voice input
+var microphoneIcon = document.getElementById('microphoneIcon');
+microphoneIcon.addEventListener('click', handleVoiceInput);
 // Add event listener for the Add Task button
 var addTaskButton = document.getElementById('addTaskButton');
 addTaskButton.addEventListener('click', function () {
